@@ -1,6 +1,6 @@
-# CommunityGPT Hackathon Bundle
+# Community chat agent 
 
-This bundle contains the pieces you need for the hackathon demo: a trimmed Next.js frontend that hosts the CommunityGPT chat experience and the agent stack that powers responses.
+A chat UI with an AI agent using Vertex AI's Agent Development Kit with BigQuery's native AI functions for analyzing community data and generating insights.
 
 ## Structure
 
