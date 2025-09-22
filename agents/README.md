@@ -9,7 +9,7 @@ Give me 2 issues from August 1st 2025. Use GitHub archives.
 
 Example Response:
 
-CommunityGPT
+Community Chat Agent
 I retrieved two issues from the GitHub archive for August 1st, 2025. However, the titles are null.
 
 SQL: SELECT JSON_VALUE(payload, '$.title') AS title
