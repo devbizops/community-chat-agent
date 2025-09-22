@@ -1,6 +1,6 @@
-# CommunityGPT Agent Engine (Vertex AI)
+# Community Chat Agent - Agent Engine (Vertex AI)
 
-This guide deploys the CommunityGPT Agent (Google ADK) to Vertex AI Agent Engines and returns a resource name you can plug into the Cloud Run proxy.
+This guide deploys the Community Chat Agent (Google ADK) to Vertex AI Agent Engines and returns a resource name you can plug into the Cloud Run proxy.
 
 ---
 
@@ -25,28 +25,28 @@ gsutil mb -l $LOCATION $STAGING_BUCKET
 The agent uses BigQuery’s new AI SQL functions. You need a BigQuery connection resource:
 # Replace $PROJECT_ID and $LOCATION
 gcloud bigquery connections create --project=$PROJECT_ID --location=$LOCATION \
-  --connection-id=communitygpt-ai \
+  --connection-id=community-chat-agent-ai \
   --connection-type=CLOUD_RESOURCE
 
 gcloud bigquery connections list --project=$PROJECT_ID --location=$LOCATION
 You’ll see a name like:
-projects/<PROJECT_ID>/locations/<LOCATION>/connections/communitygpt-ai
+projects/<PROJECT_ID>/locations/<LOCATION>/connections/community-chat-agent-ai
 Format it as:
-BQ_AI_CONNECTION_ID=<PROJECT_ID>.<LOCATION>.communitygpt-ai
+BQ_AI_CONNECTION_ID=<PROJECT_ID>.<LOCATION>.community-chat-agent-ai
 and add it to your .env.
 
 # Replace $PROJECT_ID
-gcloud iam service-accounts create communitygpt-engine \
+gcloud iam service-accounts create community-chat-agent-engine \
   --project=$PROJECT_ID \
-  --display-name="CommunityGPT Agent Engine Runtime"
+  --display-name="Community Chat Agent Engine Runtime"
 
 # Minimal example permissions for reading BigQuery
 gcloud projects add-iam-policy-binding $PROJECT_ID \
-  --member="serviceAccount:communitygpt-engine@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --member="serviceAccount:community-chat-agent-engine@${PROJECT_ID}.iam.gserviceaccount.com" \
   --role="roles/bigquery.user"
 
 # Export to use in deployment
-export SERVICE_ACCOUNT_EMAIL="communitygpt-engine@${PROJECT_ID}.iam.gserviceaccount.com"
+export SERVICE_ACCOUNT_EMAIL="community-chat-agent-engine@${PROJECT_ID}.iam.gserviceaccount.com"
 
 5) Install dependencies for deployment
 
