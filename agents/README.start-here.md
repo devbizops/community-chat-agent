@@ -1,6 +1,6 @@
-# CommunityGPT Agents — Start Here
+# Community Chat Agents — Start Here
 
-This is the quickest path to get both the Vertex AI Agent Engine and the Cloud Run Proxy running for CommunityGPT.
+This is the quickest path to get both the Vertex AI Agent Engine and the Cloud Run Proxy running for Community Chat Agent.
 
 ---
 
@@ -36,9 +36,9 @@ BQ_AI_CONNECTION_ID=your-project.us.your_vertex_conn
 BQ_AI_ENDPOINT=gemini-2.0-flash
 ALLOWED_ORIGIN=*
 RUN_REGION=us-central1
-ENGINE_SA_NAME=communitygpt-engine
-PROXY_SA_NAME=communitygpt-caller
-PROXY_SERVICE_NAME=communitygpt-api
+ENGINE_SA_NAME=community-chat-agent-engine
+PROXY_SA_NAME=community-chat-agent-caller
+PROXY_SERVICE_NAME=community-chat-agent-api
 ```
 
 Run the script to deploy both the Agent Engine and the Cloud Run proxy:
