@@ -18,9 +18,9 @@ set -euo pipefail
 #   BQ_AI_ENDPOINT          default: gemini-2.0-flash
 #   ALLOWED_ORIGIN          default: *
 #   RUN_REGION              default: $LOCATION (Cloud Run region)
-#   ENGINE_SA_NAME          default: communitygpt-engine
-#   PROXY_SA_NAME           default: communitygpt-caller
-#   PROXY_SERVICE_NAME      default: communitygpt-api
+#   ENGINE_SA_NAME          default: community-chat-agent-engine
+#   PROXY_SA_NAME           default: community-chat-agent-caller
+#   PROXY_SERVICE_NAME      default: community-chat-agent-api
 
 ROOT_DIR=$(cd "$(dirname "$0")/.." && pwd)
 AGENTS_DIR="$ROOT_DIR/agents"
@@ -76,9 +76,9 @@ required_var BQ_AI_CONNECTION_ID
 export BQ_AI_ENDPOINT=${BQ_AI_ENDPOINT:-gemini-2.0-flash}
 export ALLOWED_ORIGIN=${ALLOWED_ORIGIN:-*}
 export RUN_REGION=${RUN_REGION:-$LOCATION}
-ENGINE_SA_NAME=${ENGINE_SA_NAME:-communitygpt-engine}
-PROXY_SA_NAME=${PROXY_SA_NAME:-communitygpt-caller}
-PROXY_SERVICE_NAME=${PROXY_SERVICE_NAME:-communitygpt-api}
+ENGINE_SA_NAME=${ENGINE_SA_NAME:-community-chat-agent-engine}
+PROXY_SA_NAME=${PROXY_SA_NAME:-community-chat-agent-caller}
+PROXY_SERVICE_NAME=${PROXY_SERVICE_NAME:-community-chat-agent-api}
 
 echo "==> Using project: $PROJECT_ID"
 gcloud config set project "$PROJECT_ID" >/dev/null
@@ -103,7 +103,7 @@ echo "==> Creating/ensuring Agent Engine runtime service account: $ENGINE_SA_EMA
 if ! gcloud iam service-accounts describe "$ENGINE_SA_EMAIL" --project "$PROJECT_ID" >/dev/null 2>&1; then
   gcloud iam service-accounts create "$ENGINE_SA_NAME" \
     --project="$PROJECT_ID" \
-    --display-name="CommunityGPT Agent Engine Runtime"
+    --display-name="Community Chat Agent Engine Runtime"
 fi
 
 echo "==> Granting BigQuery read role to $ENGINE_SA_EMAIL (adjust roles as needed)"
@@ -115,7 +115,7 @@ echo "==> Creating/ensuring Cloud Run caller service account: $PROXY_SA_EMAIL"
 if ! gcloud iam service-accounts describe "$PROXY_SA_EMAIL" --project "$PROJECT_ID" >/dev/null 2>&1; then
   gcloud iam service-accounts create "$PROXY_SA_NAME" \
     --project="$PROJECT_ID" \
-    --display-name="CommunityGPT Cloud Run Caller"
+    --display-name="Community Chat Agent Cloud Run Caller"
 fi
 
 echo "==> Granting Vertex AI user role to $PROXY_SA_EMAIL"
