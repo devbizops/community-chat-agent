@@ -22,7 +22,7 @@ env_vars = {
     "BQ_AI_ENDPOINT": os.getenv("BQ_AI_ENDPOINT"),
 }
 
-display_name = "CommunityGPT (ADK) – prod"
+display_name = "Community Chat Agent (ADK) – prod"
 gcs_dir_name = os.getenv("GCS_DIR_NAME", "prod-" + str(uuid.uuid4())[:8])
 
 service_account = os.getenv("SERVICE_ACCOUNT_EMAIL")  # optional
